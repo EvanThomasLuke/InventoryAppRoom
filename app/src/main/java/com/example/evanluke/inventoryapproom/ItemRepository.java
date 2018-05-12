@@ -34,7 +34,8 @@ public class ItemRepository {
         new insertAsyncTask(mItemDao).execute(item);
     }
 
-    private static class insertAsyncTask extends AsyncTask<Item, Void, Void> {
+
+    private static class insertAsyncTask extends android.os.AsyncTask<Item, Void, Void> {
 
         private ItemDao mAsyncTaskDao;
 
@@ -48,4 +49,33 @@ public class ItemRepository {
             return null;
         }
     }
+
+    public void update (Item item) {new updateAsyncTask(mItemDao).execute(item); }
+
+    private static class updateAsyncTask extends AsyncTask<Item, Void, Void> {
+
+        private ItemDao mAsyncTaskDao;
+
+        updateAsyncTask(ItemDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Item... params) {
+            mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+/*    private static class getAsyncTask extends  AsyncTask<Item, Void, Void> {
+
+        private ItemDao mAsyncTaskDao;
+
+        getAsyncTask(ItemDao dao) {mAsyncTaskDao = dao; }
+
+        @Override
+        protected Item doInBackground(params ... id) {
+            //LiveData<Item> item = mAsyncTaskDao.getItem(id);
+            return mAsyncTaskDao.getItem(id);
+        }
+    }*/
 }

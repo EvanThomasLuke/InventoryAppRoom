@@ -29,6 +29,7 @@ public class NewItemActivity extends AppCompatActivity {
         mEditItemView = findViewById(R.id.edit_word);
         mEditAmountView = findViewById(R.id.edit_amount);
 
+
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

@@ -16,15 +16,21 @@ public class ItemViewModel extends AndroidViewModel {
 
     private LiveData<List<Item>> mAllWords;
 
+    private int id;
+
     public ItemViewModel (Application application) {
         super(application);
         mRepository = new ItemRepository(application);
         mAllWords = mRepository.getAllItems();
     }
 
+
+
     LiveData<List<Item>> getAllWords() { return mAllWords; }
 
     public void insert(Item item) { mRepository.insert(item); }
+
+    public void update(Item item) {mRepository.update(item); }
 
     public LiveData<Item> getItem(int id) {return mRepository.getItem(id); }
 }
