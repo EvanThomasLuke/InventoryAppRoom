@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -37,31 +38,26 @@ public class MainActivity extends AppCompatActivity {
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
         final ItemListAdapter adapter = new ItemListAdapter(this);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(linearLayoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         adapter.setOnItemClickListener(new ItemListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                //String title = movies.get(position).getName();
-                //Movie clickedMovie = movies.get(position);
-                //Toast.makeText(MainActivity.this, title, Toast.LENGTH_LONG).show();
 
                 //Use this to retrieve the item
                 //then pass it to detail activity
                 int id = adapter.getId(position);
 
-                // I think just launch intent with id then do query call from
-                //editActivity this line below
-                //mItemViewModel.getItem(id);
                 
-                //  // TODO: 5/9/18 or send the item object update it there and send back here and then update db
 
-                //Launch detail view passing movie as an extra
+                //Launch detail view passing item as an extra
                 Intent intent = new Intent(MainActivity.this, ItemDetailActivity.class);
-                //had to cast Movie object to Serializable idk if it will work
                 intent.putExtra("ITEM_DETAIL_KEY", id);
                 startActivity(intent);
 
@@ -70,18 +66,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         // Get a new or existing ViewModel from the ViewModelProvider.
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
 
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
-        mItemViewModel.getAllWords().observe(this, new Observer<List<Item>>() {
+        mItemViewModel.getAllItems().observe(this, new Observer<List<Item>>() {
             @Override
             public void onChanged(@Nullable final List<Item> items) {
-                // Update the cached copy of the words in the adapter.
+                // Update the cached copy of the items in the adapter.
                 adapter.setItems(items);
             }
         });
@@ -95,24 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-
- /*   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

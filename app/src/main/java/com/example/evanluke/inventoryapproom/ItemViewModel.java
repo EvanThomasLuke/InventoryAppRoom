@@ -14,19 +14,19 @@ public class ItemViewModel extends AndroidViewModel {
 
     private ItemRepository mRepository;
 
-    private LiveData<List<Item>> mAllWords;
+    private LiveData<List<Item>> mAllItems;
 
     private int id;
 
     public ItemViewModel (Application application) {
         super(application);
         mRepository = new ItemRepository(application);
-        mAllWords = mRepository.getAllItems();
+        mAllItems = mRepository.getAllItems();
     }
 
 
 
-    LiveData<List<Item>> getAllWords() { return mAllWords; }
+    LiveData<List<Item>> getAllItems() { return mAllItems; }
 
     public void insert(Item item) { mRepository.insert(item); }
 

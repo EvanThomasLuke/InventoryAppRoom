@@ -25,18 +25,12 @@ public interface ItemDao {
     @Query("DELETE FROM inventory_table")
     void deleteAll();
 
-/*    @Query("SELECT * FROM inventory_table WHERE id IN (:ids)")
-    List<Item> getItem(List<Long> ids);*/
 
     @Query("SELECT * FROM inventory_table WHERE id = :id")
     LiveData<Item> getItem(int id);
 
-    //TODO ADD query use live data to select
 
-
-
-
-    //TODO add order by word asc, add order ehe , create the dao page
+    //TODO add order by word asc, add order
     @Query("SELECT * FROM inventory_table")
     LiveData<List<Item>> getAllItems();
 }

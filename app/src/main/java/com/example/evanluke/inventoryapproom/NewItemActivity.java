@@ -26,32 +26,23 @@ public class NewItemActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item);
-        mEditItemView = findViewById(R.id.edit_word);
-        mEditAmountView = findViewById(R.id.edit_amount);
+        mEditItemView = findViewById(R.id.editText);
+        mEditAmountView = findViewById(R.id.editCount);
 
 
-        final Button button = findViewById(R.id.button_save);
+        final Button button = findViewById(R.id.saveBtn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
                 if (TextUtils.isEmpty(mEditItemView.getText())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-                    //TODO pass it either string, and item count or just have
-                    //constructor with 0 item count and increment id when it creates
-
                     String word = mEditItemView.getText().toString();
                     int number = Integer.parseInt(mEditAmountView.getText().toString());
                     Bundle extras = new Bundle();
                     extras.putString("EXTRA_REPLY", word);
                     extras.putInt("EXTRA_REPLY_INT", number);
                     replyIntent.putExtras(extras);
-                    /*
-                    replyIntent.putExtra(EXTRA_REPLY, word);
-                    replyIntent.putExtra(EXTRA_REPLY, number);
-                    Log.e ("My AspectX var is:", ""+number);*/
-
-
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();

@@ -3,9 +3,10 @@
 
     <string name="hint_word">Item name...</string>
     <string name="hint_amount">Amount...</string>
+    <string name="title">Item Title</string>
     <string name="amount">Amount: </string>
     <string name="button_save">Save</string>
-    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="empty_not_saved">Item not saved because it is empty.</string>
     <string name="title_activity_newitem">NewitemActivity</string>
 
 </resources>

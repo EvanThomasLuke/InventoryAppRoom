@@ -66,16 +66,5 @@ public class ItemRepository {
             return null;
         }
     }
-/*    private static class getAsyncTask extends  AsyncTask<Item, Void, Void> {
 
-        private ItemDao mAsyncTaskDao;
-
-        getAsyncTask(ItemDao dao) {mAsyncTaskDao = dao; }
-
-        @Override
-        protected Item doInBackground(params ... id) {
-            //LiveData<Item> item = mAsyncTaskDao.getItem(id);
-            return mAsyncTaskDao.getItem(id);
-        }
-    }*/
 }

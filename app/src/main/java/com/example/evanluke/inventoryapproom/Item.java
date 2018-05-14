@@ -23,10 +23,9 @@ public class Item {
     private int id;
 
     @Ignore
-    public Item(@NonNull String mTitle, @NonNull int mCount /*int id*/) {
+    public Item(@NonNull String mTitle, @NonNull int mCount) {
         this.mTitle = mTitle;
         this.mCount = mCount;
-        //this.id = id;
     }
 
     public Item(@NonNull int id, @NonNull String mTitle, @NonNull int mCount) {
